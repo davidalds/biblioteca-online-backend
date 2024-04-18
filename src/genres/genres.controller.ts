@@ -33,8 +33,11 @@ export class GenresController {
   }
 
   @Get()
-  findAll() {
-    return this.genresService.findAll();
+  findAll(
+    @Query('offset', ParseIntPipe) offset: number,
+    @Query('limit', ParseIntPipe) limit: number
+  ) {
+    return this.genresService.findAll(offset, limit);
   }
 
   @Get(':id')

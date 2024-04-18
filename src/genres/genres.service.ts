@@ -15,8 +15,15 @@ export class GenresService {
     });
   }
 
-  async findAll() {
-    return this.prisma.genre.findMany();
+  async findAll(offset: number, limit: number) {
+    const genres = await this.prisma.genre.findMany({
+      skip: offset,
+      take: limit,
+    });
+
+    const total = await this.prisma.genre.count();
+
+    return { total, genres };
   }
 
   async findOne(id: number) {

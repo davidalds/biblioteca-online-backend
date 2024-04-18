@@ -38,7 +38,7 @@ export class BooksService {
       1
     );
 
-    if (checkISBN) {
+    if (checkISBN.total) {
       throw new ForbiddenException(
         'Já existe um livro cadastrado com o ISBN informado'
       );
